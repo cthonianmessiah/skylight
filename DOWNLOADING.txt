@@ -1,0 +1,41 @@
+# Requires elevated permissions on Windows
+
+To install the Skyfield and requests modules into Blender's python environment (Windows):
+The "skyfield" module is needed to interact with the NASA ephemeris calculation modules (SPICE kernels).
+The "requests" module is needed to allow the addon to download files to its assets folder.
+You can skip installing the "requests" module if you intend to download the assets manually.
+
+1. Open a command prompt with elevated permissions.
+2. Find the install of python.exe, by default it is located at:
+   C:\Program Files\Blender Foundation\Blender 4.0\4.0\python\bin\python.exe
+3. Run "python -m ensurepip" to make sure the pip package manager is available.
+4. Run "python -m pip install skyfield". This should download and install the skyfield module.
+5. Run "python -m pip install requests". This should download and install the requests module.
+
+
+# Should not require elevated permissions, the plugin should be able to do this.
+
+To find the addon folder on Windows (this example is for Blender 4.0):
+C:\Users\[you]\AppData\Roaming\Blender Foundation\Blender\4.0\scripts\addons\skylight\assets
+
+To download the de421 SPICE kernel used to calculating ephemeris:
+
+1. Download https://naif.jpl.nasa.gov/pub/naif/JUNO/kernels/spk/de421.bsp
+2. Save the downloaded .bsp file in the assets subfolder as "skylight/assets/de421.bsp".
+3. Reinitialize the addon by toggling its checkmark in the addon list.
+
+To download the sky texture:
+
+1. Go to https://svs.gsfc.nasa.gov/4851/#media_group_319116 and choose your preferred resolution of .exr texture.
+  Higher resolutions may fail to load in Blender, we're working on optimizing support by
+  simplifying the generated lighting.
+2. Save the texture in the skylight addon in the assets subfolder as "skylight/assets/sky.exr".
+3. Reinitialize the addon by toggling its checkmark in the addon list.
+
+To download the moon texture:
+
+1. Go to https://svs.gsfc.nasa.gov/4874/#media_group_318381 and choose youre preferred resolution of .mp4.
+   The high-resolution video has been tested and is functional, although it might not be necessary unless
+   you intend to render extreme closeups.
+2. Save the video file in the skylight addon in the assets subfolder as "skylight/assets/moon.mp4".
+3. Reinitialize the addon by toggling its checkmark in the addon list.
