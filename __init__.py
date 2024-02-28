@@ -26,18 +26,20 @@
 # https://rhodesmill.org/skyfield/
 # Available under the MIT License: https://github.com/skyfielders/python-skyfield/blob/master/LICENSE
 
+# Credit to https://nicoschertler.wordpress.com/2013/04/03/simulating-a-days-sky/
+# for providing a working example of the Perez sky illumination model attempted in v0.2.0
+
 assert  __name__ != '__main__', "This script is for registering an addon and can't be run directly."
 
 bl_info = {
     "name": "Skylight Environment Builder",
     "description": "Build an accurate sky using real astronomical data.",
     "author": "Gregory Dow",
-    "version": (0, 1, 0),
+    "version": (0, 2, 0),
     "blender": (4, 0, 0),
-    "location": "View3D > Tools > Skylight", # TODO: Validate this actually works
+    "location": "View3D > Tools > Skylight",
     "warning": "Requires installing Skyfield module and downloading texture data from NASA.",
     "doc_url": "TBD", # TODO
-    "tracker_url": "TBD", # TODO
     "support": "COMMUNITY",
     "category": "Lighting"
 }
