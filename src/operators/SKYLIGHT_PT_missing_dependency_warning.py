@@ -9,9 +9,11 @@ class SKYLIGHT_PT_missing_dependency_warning(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
 
+
     @classmethod
     def poll(self, context):
         return not dependencies.satisfied()
+
 
     def draw(self, context):
         layout = self.layout

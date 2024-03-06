@@ -8,7 +8,7 @@ class SKYLIGHT_OT_rebuild_world(bpy.types.Operator):
        into the current scene."""
     bl_idname = 'skylight.rebuild_world'
     bl_label = "Rebuild World Shader"
-    bl_description = ("Imports or reimports the Skylight world shader into the current scene.")
+    bl_description = ("Imports or reimports the Skylight world shader into the current scene")
     bl_options = {'REGISTER', 'INTERNAL'}
 
     append_as: bpy.props.StringProperty(

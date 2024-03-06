@@ -14,13 +14,16 @@ class SKYLIGHT_OT_download_de421(bpy.types.Operator):
     _progress = ""
     _cancelled = False
 
+
     @classmethod
     def poll(self, context):
         return not dependencies.dep_de421_spice
 
+
     def cancel(self, context):
         wm = context.window_manager
         wm.event_timer_remove(self._timer)
+
 
     def execute(self, context):
         self._timer = None
@@ -46,6 +49,7 @@ class SKYLIGHT_OT_download_de421(bpy.types.Operator):
         self._timer = wm.event_timer_add(0.5, window=context.window)
         wm.modal_handler_add(self)
         return {'RUNNING_MODAL'}
+
 
     def modal(self, context, event):
         if event.type in {'RIGHTMOUSE', 'ESC'}:

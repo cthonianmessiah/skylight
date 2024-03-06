@@ -8,7 +8,7 @@ from .SKYLIGHT_OT_update_world import SKYLIGHT_OT_update_world
 
 class SKYLIGHT_PT_main(bpy.types.Panel):
     """Allows the user to update time and space coordinates and recalculate properties used by Skylight's world shader."""
-    bl_label = "Skylight Environment Builder"
+    bl_label = "Environment Builder"
     bl_category = "Skylight"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'

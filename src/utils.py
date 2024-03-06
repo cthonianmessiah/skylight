@@ -21,6 +21,7 @@ CONST_DE421_URL = 'https://naif.jpl.nasa.gov/pub/naif/JUNO/kernels/spk/de421.bsp
 CONST_BLEND_NAME = 'skylight.blend'
 CONST_WORLD_NAME = 'Earth'
 CONST_MEGABYTE = 1048576
+CONST_CLOUD_COLLECTION_NAME = "Skylight Clouds"
 
 # Blender addon path
 addon_path = bpy.utils.user_resource('SCRIPTS', path='addons')
@@ -107,6 +108,13 @@ def download_resource(url, target, chunk_size, show_progress, show_finished, che
     if cancelled:
         Path(target).unlink()
     show_finished()
+
+
+def find_collection(collection, name):
+    # Recursive depth-first tree search
+    logger.warning(f"Finding {name} in collection {collection.name}")
+    return collection if collection.name == name \
+        else next((x for x in collection.children if find_collection(x, name) is not None), None)
 
 
 def initialize_property(obj, prop):

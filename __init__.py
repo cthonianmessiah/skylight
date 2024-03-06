@@ -26,20 +26,18 @@
 # https://rhodesmill.org/skyfield/
 # Available under the MIT License: https://github.com/skyfielders/python-skyfield/blob/master/LICENSE
 
-# Credit to https://nicoschertler.wordpress.com/2013/04/03/simulating-a-days-sky/
-# for providing a working example of the Perez sky illumination model attempted in v0.2.0
-
 assert  __name__ != '__main__', "This script is for registering an addon and can't be run directly."
 
 bl_info = {
     "name": "Skylight Environment Builder",
     "description": "Build an accurate sky using real astronomical data.",
     "author": "Gregory Dow",
-    "version": (0, 2, 0),
+    "version": (0, 1, 0),
     "blender": (4, 0, 0),
-    "location": "View3D > Tools > Skylight",
+    "location": "View3D > Tools > Skylight", # TODO: Validate this actually works
     "warning": "Requires installing Skyfield module and downloading texture data from NASA.",
     "doc_url": "TBD", # TODO
+    "tracker_url": "TBD", # TODO
     "support": "COMMUNITY",
     "category": "Lighting"
 }
@@ -61,40 +59,55 @@ import bpy
 from .src import dependencies, utils
 
 from .src.operators.SKYLIGHT_preferences import SKYLIGHT_preferences
-from .src.operators.SKYLIGHT_PT_missing_dependency_warning import SKYLIGHT_PT_missing_dependency_warning
-from .src.operators.SKYLIGHT_OT_install_skyfield import SKYLIGHT_OT_install_skyfield
-from .src.operators.SKYLIGHT_OT_download_sky import SKYLIGHT_OT_download_sky
-from .src.operators.SKYLIGHT_OT_download_moon import SKYLIGHT_OT_download_moon
-from .src.operators.SKYLIGHT_OT_download_de421 import SKYLIGHT_OT_download_de421
-from .src.operators.SKYLIGHT_OT_rebuild_world import SKYLIGHT_OT_rebuild_world
-from .src.operators.SKYLIGHT_OT_update_world import SKYLIGHT_OT_update_world
+
+from .src.operators.SKYLIGHT_PT_cloud_control import SKYLIGHT_PT_cloud_control
 from .src.operators.SKYLIGHT_PT_main import SKYLIGHT_PT_main
+from .src.operators.SKYLIGHT_PT_missing_dependency_warning import SKYLIGHT_PT_missing_dependency_warning
+
+from .src.operators.SKYLIGHT_OT_add_cloud_layer import SKYLIGHT_OT_add_cloud_layer
+from .src.operators.SKYLIGHT_OT_download_de421 import SKYLIGHT_OT_download_de421
+from .src.operators.SKYLIGHT_OT_download_moon import SKYLIGHT_OT_download_moon
+from .src.operators.SKYLIGHT_OT_download_sky import SKYLIGHT_OT_download_sky
+from .src.operators.SKYLIGHT_OT_install_skyfield import SKYLIGHT_OT_install_skyfield
+from .src.operators.SKYLIGHT_OT_rebuild_world import SKYLIGHT_OT_rebuild_world
+from .src.operators.SKYLIGHT_OT_select_cloud_layer import SKYLIGHT_OT_select_cloud_layer
+from .src.operators.SKYLIGHT_OT_update_world import SKYLIGHT_OT_update_world
 
 
 def register():
     dependencies.update()
     utils.align_preferences()
     [utils.make_registered(x)
-        for x in [SKYLIGHT_OT_install_skyfield,
-                  SKYLIGHT_OT_download_sky,
-                  SKYLIGHT_OT_download_moon,
-                  SKYLIGHT_OT_download_de421,
-                  SKYLIGHT_OT_rebuild_world,
-                  SKYLIGHT_OT_update_world,
-                  SKYLIGHT_PT_main]]
+        for x in [
+            SKYLIGHT_PT_main,
+            SKYLIGHT_PT_cloud_control,
+            SKYLIGHT_OT_add_cloud_layer,
+            SKYLIGHT_OT_download_de421,
+            SKYLIGHT_OT_download_moon,
+            SKYLIGHT_OT_download_sky,
+            SKYLIGHT_OT_install_skyfield,
+            SKYLIGHT_OT_rebuild_world,
+            SKYLIGHT_OT_select_cloud_layer,
+            SKYLIGHT_OT_update_world,
+            ]]
 
 
 def unregister():
     [utils.make_unregistered(x)
-        for x in [SKYLIGHT_preferences,
-                  SKYLIGHT_PT_missing_dependency_warning,
-                  SKYLIGHT_OT_install_skyfield,
-                  SKYLIGHT_OT_download_sky,
-                  SKYLIGHT_OT_download_moon,
-                  SKYLIGHT_OT_download_de421,
-                  SKYLIGHT_OT_rebuild_world,
-                  SKYLIGHT_OT_update_world,
-                  SKYLIGHT_PT_main]]
+        for x in [
+            SKYLIGHT_preferences,
+            SKYLIGHT_PT_main,
+            SKYLIGHT_PT_cloud_control,
+            SKYLIGHT_PT_missing_dependency_warning,
+            SKYLIGHT_OT_add_cloud_layer,
+            SKYLIGHT_OT_download_de421,
+            SKYLIGHT_OT_download_moon,
+            SKYLIGHT_OT_download_sky,
+            SKYLIGHT_OT_install_skyfield,
+            SKYLIGHT_OT_rebuild_world,
+            SKYLIGHT_OT_select_cloud_layer,
+            SKYLIGHT_OT_update_world,
+            ]]
 
 
 if reload_detected:

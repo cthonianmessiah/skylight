@@ -151,6 +151,11 @@ class SKYLIGHT_OT_update_world(bpy.types.Operator):
             description="The apparent magnitude of Uranus from the observer's position",
             default=0.0
             ))
+        utils.initialize_property(world, dict(
+            name='ui_selected_cloud_layer',
+            description="The currently selected cloud layer in the cloud controller panel",
+            default=''
+            ))
 
 
     def apply_skyfield(self, context):
