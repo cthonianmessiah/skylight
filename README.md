@@ -63,9 +63,9 @@ Once you've configured your clouds how you want (and set up your Cycles volumetr
 The actual angular size of the Sun and Moon are each about half a degree. This looks bigger to the human eye when we focus on these objects. If you want these objects to take more of the camera's field of view, you can use a longer focal length.
 * **Why is the Sun a plain disc?**
 A typical .exr world texture taken from a photographic panorama will include optical effects such as bloom and glare that affected the camera sensor at the time the photograph was taken. In Blender, you'll have to recreate these effects using post-processing such as a glare filter.
+* **Why aren't my clouds showing up?**
+The cloud shaders require the [Cycles rendering engine](https://docs.blender.org/manual/en/latest/render/cycles/introduction.html). If you're using EEVEE, the clouds won't display properly.
 
 ## Roadmap / Feature Backlog
-* Clouds
-* Improve accuracy of sky brightness using solar elevation and twilight definitions
 * Add an Earth curvature guide based on elevation
 * Map higher-resolution stars onto the camera FOV for longer focal lengths to reduce pixelation
