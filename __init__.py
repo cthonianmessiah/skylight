@@ -32,7 +32,7 @@ bl_info = {
     "name": "Skylight Environment Builder",
     "description": "Build an accurate sky using real astronomical data.",
     "author": "Gregory Dow",
-    "version": (0, 1, 0),
+    "version": (0, 3, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Tools > Skylight", # TODO: Validate this actually works
     "warning": "Requires installing Skyfield module and downloading texture data from NASA.",
