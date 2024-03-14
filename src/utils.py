@@ -4,6 +4,7 @@ import bpy
 import logging
 import os
 import subprocess
+import sys
 from pathlib import Path
 
 CONST_ADDON_NAME = 'skylight'
